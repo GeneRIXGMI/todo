@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState, useRef } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Todo=() =>{
+  const[todos, setTodos]= useState({});
+  const inputRef = useRef(null);
+
+return(
+  <>
+  <div>Leave the computer alone for once and do your tasks:</div>
+  {todos.map((todo)=>{
+    return <div key={todo}>{todo}</div>;
+  })}
+
+  <label>
+    Task:<input ref={inputRef} />
+  </label>
+  <button onClick={()=>{
+    setTodos([...todos, inputRef.current.value])
+  }}
+  >Add Task</button>
+  </>
+)
 }
 
-export default App;
+export default Todo;
